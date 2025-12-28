@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>ONE CRYPTO - LEAP AND LEARN.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    :root {
+      --bg-primary: #0B0E11;
+      --bg-secondary: #161A1E;
+      --bg-tertiary: #1E2329;
+      --bg-card: #1E2329;
+      --text-primary: #EAECEF;
+      --text-secondary: #848E9C;
+      --text-tertiary: #5E6673;
+      --accent-green: #0ECB81;
+      --accent-red: #F6465D;
+      --accent-yellow: #F0B90B;
+      --accent-blue: #3861FB;
+      --border-color: #2B3139;
+      --hover-bg: #2B3139;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .stat-value.green {
+      color: var(--accent-green);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 14px;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-green);
+    }
+
+    .form-control:hover {
+      border-color: var(--text-tertiary);
+    }
+
+    select.form-control {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23848E9C' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--accent-green);
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary:hover {
+      background: #0DB871;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .signals-container {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .signals-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .signals-container::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+
+    .signals-container::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 3px;
+    }
+
+    .signal-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .signal-item:hover {
+      border-color: var(--accent-green);
+      transform: translateX(4px);
+    }
+
+    .signal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .signal-time {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-yellow);
+    }
+
+    .signal-type {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .signal-type.call {
+      background: rgba(14, 203, 129, 0.15);
+      color: var(--accent-green);
+    }
+
+    .signal-type.put {
+      background: rgba(246, 70, 93, 0.15);
+      color: var(--accent-red);
+    }
+
+    .signal-details {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .signal-accuracy {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 8px;
+    }
+
+    .stat-card-label {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-banner {
+      background: linear-gradient(90deg, rgba(14, 203, 129, 0.1), rgba(56, 97, 251, 0.1));
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--accent-green);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-icon {
+      color: var(--accent-green);
+      font-size: 20px;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .github-link {
+      color: var(--accent-green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .github-link:hover {
+      text-decoration: underline;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-tertiary);
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--accent-green);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 968px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-stats {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo-icon">1c</div>
+        <div class="logo-text">ONE CRYPTO</div>
+      </div>
+      <div class="header-stats">
+        <div class="stat-item">
+          <span class="stat-label">BTC/USD</span>
+          <span class="stat-value green">$94,567.23</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">24h Change</span>
+          <span class="stat-value green">+3.45%</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <h1 class="hero-title">LEAP AND LEARN.</h1>
+      <p class="hero-subtitle">Advanced algorithmic analysis for cryptocurrency markets</p>
+      <div class="hero-badges">
+        <div class="badge">
+          <div class="badge-dot"></div>
+          <span>Live Analysis</span>
+        </div>
+        <div class="badge">
+          <span>⚡ High Performance</span>
+        </div>
+        <div class="badge">
+          <span>🔒 Secure</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      <span class="info-icon">📊</span>
+      <div class="info-text">
+        Join our community: <a href="https://github.com/rahulkhartudepvt-glitch" target="_blank" class="github-link">@rahulkhartudepvt-glitch</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Generated Signals</h2>
+          <span id="signalCount" style="font-size: 13px; color: var(--text-tertiary);">0 signals</span>
+        </div>
+        
+        <div class="loading" id="loadingState">
+          <div class="spinner"></div>
+          <p>Analyzing market data...</p>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">📈</div>
+          <p>Configure parameters and generate signals</p>
+        </div>
+
+        <div class="signals-container" id="signalsContainer"></div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Configuration</h2>
+          </div>
+
+          <form id="signalForm">
+            <div class="form-group">
+              <label class="form-label" for="cbAtivo">Trading Pair</label>
+              <select class="form-control" id="cbAtivo">
+                <option value="BTC_USD">CRYPTO IDX</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="selPercentageMin">Min Accuracy</label>
+                <select class="form-control" id="selPercentageMin">
+                  <option value="90">90%</option>
+                  <option value="91">91%</option>
+                  <option value="92">92%</option>
+                  <option value="93">93%</option>
+                  <option value="94">94%</option>
+                  <option value="95">95%</option>
+                  <option value="96">96%</option>
+                  <option value="97">97%</option>
+                  <option value="98">98%</option>
+                  <option value="99">99%</option>
+                  <option value="100" selected>100%</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="selPercentageMax">Max Accuracy</label>
+                <select class="form-control" id="selPercentageMax">
+                  <option value="90" selected>90%</option>
+                  <option value="91">91%</option>
+                  <option value="92">92%</option>
+                  <option value="93">93%</option>
+                  <option value="94">94%</option>
+                  <option value="95">95%</option>
+                  <option value="96">96%</option>
+                  <option value="97">97%</option>
+                  <option value="98">98%</option>
+                  <option value="99">99%</option>
+                  <option value="100">100%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="selCandleTime">Timeframe</label>
+                <select class="form-control" id="selCandleTime">
+                  <option value="M1" selected>M1</option>
+                  <option value="M5">M5</option>
+                  <option value="M15">M15</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="selDays">Strategy</label>
+                <select class="form-control" id="selDays">
+                  <option value="52" selected>1 Minute</option>
+                  <option value="11">5 Minute</option>
+                  <option value="3">15 Minute</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="selMartingales">Martingale</label>
+                <select class="form-control" id="selMartingales">
+                  <option value="0" selected>0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="selOrderType">Type</label>
+                <select class="form-control" id="selOrderType">
+                  <option value="CALL" selected>CALL</option>
+                  <option value="PUT">PUT</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" onclick="generateSignals()" class="btn-primary" id="generateBtn">
+              Generate Signals
+            </button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top: 24px;">
+          <div class="card-header">
+            <h2 class="card-title">Statistics</h2>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-value" id="statAccuracy">95%</div>
+              <div class="stat-card-label">Accuracy</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-value" id="statSignals">0</div>
+              <div class="stat-card-label">Signals</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-value" id="statActive">24/7</div>
+              <div class="stat-card-label">Active</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    var listBestPairTimes = [];
+    var listPairs = ["EUR_USD", "GBP_AUD", "EUR_AUD", "EUR_JPY", "GBP_CAD", "USD_JPY", "EUR_CHF", "AUD_CAD", "GBP_CHF", "EUR_GBP", "AUD_CHF", "CAD_JPY", "GBP_JPY", "EUR_CAD", "AUD_JPY", "GBP_NZD"];
+    var requestNumber = 0;
+
+    function generateSignals() {
+      const btn = document.getElementById('generateBtn');
+      const loading = document.getElementById('loadingState');
+      const empty = document.getElementById('emptyState');
+      const container = document.getElementById('signalsContainer');
+      
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+      loading.classList.add('active');
+      empty.style.display = 'none';
+      container.innerHTML = '';
+      
+      listBestPairTimes = [];
+      
+      const cbAtivo = document.getElementById('cbAtivo').value;
+      const pairs = cbAtivo === '0' ? listPairs : [cbAtivo];
+      requestNumber = pairs.length;
+      
+      const count = calculateCountCandles();
+      
+      if (count > 50000) {
+        alert('The number of candles exceeds 50,000. Please decrease the analysis period.');
+        resetUI();
+        return;
+      }
+      
+      pairs.forEach(pair => callHistoricData(pair, count, cbAtivo));
+    }
+
+    function calculateCountCandles() {
+      const candleTime = document.getElementById('selCandleTime').value;
+      const daysAnalyse = document.getElementById('selDays').value;
+      
+      const minutesMap = {
+        'M1': 1, 'M2': 2, 'M5': 5, 'M10': 10,
+        'M15': 15, 'M30': 30, 'H1': 60, 'H2': 120, 'H4': 240
+      };
+      
+      const minutes = minutesMap[candleTime] || 15;
+      return (60 / minutes) * 24 * daysAnalyse;
+    }
+
+    function callHistoricData(pair, count, cbAtivo) {
+      const urlHist = `https://api-fxpractice.oanda.com/v3/instruments/${pair}/candles?granularity=${document.getElementById('selCandleTime').value}&count=${count}`;
+      
+      $.ajax({
+        url: urlHist,
+        headers: { Authorization: 'Bearer eb2326208921b413a87728832f191f03-d9be68b74884f7d3107b9f05ca305319' },
+        type: 'GET',
+        success: result => calculateHistoric(result),
+        error: error => errorHistoric(error)
+      });
+    }
+
+    function calculateHistoric(result) {
+      const candles = result.candles;
+      const orderType = document.getElementById('selOrderType').value;
+      const martingales = parseInt(document.getElementById('selMartingales').value);
+      const percentageMin = parseInt(document.getElementById('selPercentageMin').value);
+      const percentageMax = parseInt(document.getElementById('selPercentageMax').value);
+      
+      let candlesResult = [];
+      
+      for (let i = 0; i < candles.length; i++) {
+        const candle = candles[i];
+        const item = {
+          resultValue: candle.mid.o - candle.mid.c,
+          date: convertDate(candle.time),
+          result: candle.mid.o - candle.mid.c > 0 ? 'PUT' : 'CALL',
+          percentDif: ((candle.mid.o - candle.mid.c) * 100) / candle.mid.o
+        };
+        item.win = item.result === orderType;
+        
+        const hour = parseInt(item.date.time.split(':')[0]);
+        if (hour >= 2 && hour <= 18) {
+          candlesResult.push(item);
+        }
+      }
+      
+      if (martingales > 0) {
+        candlesResult = candlesResult.map((candle, i) => {
+          candle.nextCandles = getNextMartingales(candlesResult, i, martingales);
+          candle.win = candle.win || candle.nextCandles.some(c => c.win);
+          return candle;
+        });
+      }
+      
+      const timeGrouped = {};
+      candlesResult.forEach(candle => {
+        if (!timeGrouped[candle.date.time]) {
+          timeGrouped[candle.date.time] = {
+            time: candle.date.time,
+            candles: [],
+            pair: result.instrument
+          };
+        }
+        timeGrouped[candle.date.time].candles.push(candle);
+      });
+      
+      Object.values(timeGrouped).forEach(group => {
+        const wins = group.candles.filter(c => c.win).length;
+        group.winrate = (wins * 100) / group.candles.length;
+        group.averageTickDif = group.candles.reduce((sum, c) => sum + c.percentDif, 0) / wins;
+        
+        if (group.winrate >= percentageMin && group.winrate <= percentageMax) {
+          listBestPairTimes.push(group);
+        }
+      });
+      
+      requestNumber--;
+      if (requestNumber === 0) {
+        displaySignals();
+      }
+    }
+
+    function getNextMartingales(candles, index, martingales) {
+      const next = [];
+      for (let i = 1; i <= martingales && index + i < candles.length; i++) {
+        next.push(candles[index + i]);
+      }
+      return next;
+    }
+
+    function displaySignals() {
+      const container = document.getElementById('signalsContainer');
+      const loading = document.getElementById('loadingState');
+      const empty = document.getElementById('emptyState');
+      const orderType = document.getElementById('selOrderType').value;
+      const candleTime = document.getElementById('selCandleTime').value;
+      
+      loading.classList.remove('active');
+      
+      if (listBestPairTimes.length === 0) {
+        empty.style.display = 'block';
+        resetUI();
+        return;
+      }
+      
+      listBestPairTimes.sort((a, b) => a.time.localeCompare(b.time));
+      
+      container.innerHTML = listBestPairTimes.map(signal => `
+        <div class="signal-item">
+          <div class="signal-header">
+            <span class="signal-time">⏰ ${formatTime(signal.time)}</span>
+            <span class="signal-type ${orderType.toLowerCase()}">${orderType}</span>
+          </div>
+          <div class="signal-details">
+            <span>📊 CRYPTO IDX</span>
+            <span>⏱️ ${candleTime}</span>
+            <span class="signal-accuracy">${signal.winrate.toFixed(2)}%</span>
+          </div>
+        </div>
+      `).join('');
+      
+      document.getElementById('signalCount').textContent = `${listBestPairTimes.length} signals`;
+      document.getElementById('statSignals').textContent = listBestPairTimes.length;
+      document.getElementById('statAccuracy').textContent = 
+        `${(listBestPairTimes.reduce((sum, s) => sum + s.winrate, 0) / listBestPairTimes.length).toFixed(0)}%`;
+      
+      resetUI();
+    }
+
+    function formatTime(time) {
+      const parts = time.split(':');
+      return parts.map(p => p.padStart(2, '0')).join(':');
+    }
+
+    function resetUI() {
+      const btn = document.getElementById('generateBtn');
+      btn.disabled = false;
+      btn.textContent = 'Generate Signals';
+    }
+
+    function errorHistoric(error) {
+      alert('Error fetching data. Please try again.');
+      resetUI();
+      document.getElementById('loadingState').classList.remove('active');
+      document.getElementById('emptyState').style.display = 'block';
+    }
+
+    function convertDate(time) {
+      const date = new Date(time);
+      return {
+        date: date,
+        time: `${date.getHours()}:${date.getMinutes()}`
+      };
+    }
+  </script>
+</body>
+</html>
